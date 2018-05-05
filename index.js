@@ -15,7 +15,15 @@ function ObjectFullMap(object, callback) {
   }, {});
 }
 
+function ObjectReduce(object, callback, init) {
+  const keys = Object.keys(object);
+  return keys.reduce((base, key) => {
+    return callback(base, key, object[key]);
+  }, init);
+}
+
 module.exports = {
   map: ObjectMap,
   fullmap: ObjectFullMap,
+  reduce: ObjectReduce,
 };

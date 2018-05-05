@@ -1,5 +1,7 @@
 const map = require('./index.js').map;
 const fullmap = require('./index.js').fullmap;
+const reduce = require('./index.js').reduce;
+
 require('./extend');
 
 exports.map = function (test) {
@@ -23,6 +25,20 @@ exports.fullmap = function (test) {
   test.deepEqual(output1, res);
 
   const output2 = base.fullmap((k, v) => [k + 'ok', v + 'ok']);
+  test.deepEqual(output2, res);
+
+  test.done();
+};
+
+
+exports.reduce = function (test) {
+  const base = { k1: 'v1' };
+  const res = [ 'k1+v1' ];
+
+  const output1 = reduce(base, (base, k, v) => [...base, `${k}+${v}` ], []);
+  test.deepEqual(output1, res);
+
+  const output2 = base.reduce((base, k, v) => [...base, `${k}+${v}` ], []);
   test.deepEqual(output2, res);
 
   test.done();
