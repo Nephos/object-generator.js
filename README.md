@@ -4,6 +4,8 @@ Generate object elegantly.
 
 ```js
 const object = require('object-generator');
+const object = require('object-generator/extend');
+
 object.map({k: 'v'}, (key, value) => value + ' stuff');
 // => { k: 'v stuff' }
 object.fullmap({k: 'v'}, (key, value) => [key + '1', value + ' stuff']);
